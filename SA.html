@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style2.css">
+    <title>System Architect</title>
+</head>
+<body>
+    <h1 class="title">System Architect</h1>
+
+    <h2>Dev studio</h2>
+    Pega applications depend on cooperation between <b>domain experts</b> (business analysts, citizen developers, front-end developers)
+    who provide valuable insight into processes and user needs, and <b>implementation experts</b> (system architects, full-stack 
+    developers, database administrators, security administrators), who provide the expertise needed to address critical use cases that 
+    require complex configurations. Pega provides environments tailored to their skill level and optimized for the tasks they perform.
+    <ul>
+        <li><u>App studio :</u> domain experts can access core application development features (case design, data management, UX)</li>
+        <li><u>Dev studio :</u> implementation experts access rule forms directly to address complex or less-common configuration 
+            requirements. Provides features for configuring security permissions and access control, managing rules to promote reuse, 
+            and addressing the performance limitations of an application.</li>
+    </ul>
+    <u>Co-development approach</u> : the BA understands business needs, the SA understands the capabilities of Pega Platform.
+    <p class="ex">Ex : A BA designs the views in App Studio to capture the billing and shipping address for an order.
+        Together, they create better solutions more quickly.
+        A SA adds functionality to automatically copy the billing address to the shipping address when prompted by the user.  
+    </p>
+
+    In Dev studio, developpers can extend the rules (processes, views, correspondence) configured in App studio for a single case type, 
+    to an application, division or entire organization to create a library of standardized, reusable rules (in App studio). Reduce 
+    development time. <br>
+    Rules can have different names in both studios : field = property, goal and deadline = SLA, user = operator, team = workgroup, 
+    rule = record.
+
+    <h2>Rules</h2>
+    A rule is the basic building block of a Pega Platform application that defines its behavior. Each rule is an instance of a rule type. 
+    The <b><u>rule type</u></b> is an abstract model that determines a specific type of behavior (automated decisions, UI design, modelling 
+    process like flow rule), modeled by the rule. <br>
+    When you model a case type, you configure the app with instructions to create, process and resolve = rules. Describe the behavior for 
+    individual cases. Pega Platform uses the rules you create to generate application code in the background. Provides many rule types as 
+    templates. 
+    <p class="ex">Ex : flow rule to model a process.</p>
+    Automated rule creation in App Studio : when we add processes, define steps and configure views in a case life cycle, Pega creates 
+    and manages the rules that define process flows, tasks and UI. <br>
+    Modularity with rules : 
+    <ul>
+        <li><u>Versioning</u> : dev create a new version of a rule whenever case behavior needs to change. Each rule describes a specific
+        case behavior, the rest of the case is not affected. Pega maintains a history of changes to a rule.</li>
+        <li><u>Delegation</u> : dev delegate rules to business users to allow them to update case behavior as business conditions change.
+        The rest of the app remains unchanged.</li>
+        <li><u>Reuse</u> : dev reuse rules whenever an app needs to incorporate existing case behavior.</li>
+    </ul>
+
+    A <b>ruleset</b> identifies, stores and manages the set of rules that define an application or a part of. Can be shared between 
+    applications to allow several applications to use the same rules. Saves development time and effort. 
+    Name : unique, meaningful in a business context, easy to remember. No spaces, dashes.<br>
+    Versioning : update content of rulesets. The ruleset is identified by its name and version number : xx-xx-xx. First segment : major 
+    version (substantial release of an app), second : minor version (interim release or enhancements to a major release), last : patch 
+    version (fixes to address bugs in an app). 
+    
+    <p>A <b>ruleset stack</b> is a sequence of rulesets : all the versions of the specified ruleset. Allows an updated application to 
+    reference new ruleset versions that contain updates and new features.</p> 
+
+    <b>Rule creation</b> : rules are created automatically in App Studio but you can create your own in Dev Studio (record). You need to 
+    specify the <u>rule type</u>, the <u>ruleset</u> in which to organize the rule, the class the rule <u>applies to</u> and the <u>label</u>. 
+    <br>
+    A rule is identified by a unique instance key, stored by using the property .pzInsKey, which consists of 4 elements separated by a 
+    space : the internal name for the rule type, the applies to class for the rule, the identifier of the rule, the timestamp from when the 
+    rule was created, normalized to Greenwich Mean Time (GMT). <br>
+    The informations specified by default depends on the method of creation of the rule. For instance, a rule created from the Create menu :
+    the rule type, application context, and ruleset are specified by default. From the App explorer : + class specified. From a rule 
+    reference : + label and identifier specified. From Save as : 
+    <br><br>
+    The flow rule will not appear if not marked as a relevant record.
+
+    <h3>Classes</h3>
+    Rules are grouped into classes according to their capacity for reuse. Class = scope. Three class types :
+    <ul>
+        <li><b>Work class </b> contains the rules that describe how to process cases, such as processes, data elements, and user interfaces.
+        The most specific one.</li>
+        <li><b>Integration class</b> contains the rules that describe how the application interacts with other systems, such as the 
+            integration assets that connect the application to an external customer database or a third-party web server.</li>
+        <li><b>Data class </b> contains the rules that describe the data types in the application, such as a customer data type or an 
+            order items data type (data objects).</li>
+    </ul>
+    A class can contain other classes : parent class-child class (can inherit rules of its parent).
+    <br><br>
+    <b>Class hierarchy</b> describes the organization of the classes in a multi-level hierarchy. Class name identifies its position in the 
+    class hierarchy.
+    <p class="ex">Ex : Class TGB, child class : TGB-HR, child class : TGB-HR-Work</p>
+    Case Type (last child) -- > Work -- > Application -- > Div/unit -- > Organization -- > Other Apps -- > Pega Platform (base classes)
+    <br><br>
+    Organization : maintains a standard SLA rule for all cases created.
+    @baseclass : ultimate base class (above any class in the class hierarchy (last parent)). All other classes inherit from @baseclass.
+
+    <h3>Inheritance</h3>
+    Supports reuse.
+    <ul>
+        <li><b>Pattern inheritance :</b> automatic. Uses the existing class name structure to determine which rules are available for 
+        reuse. Searches classes that share a class name prefix.</li>
+        <li><b>Directed inheritance :</b> inheritance between classes where the parent class is explicitly specified.
+            The option that allows an application class to inherit rules defined for standard Pega classes</li>
+    </ul>
+    
+    <p><a href="beginner.html">Data and integration beginner</a></p>
+
+    <h2>Deadline</h2>
+    The <b>passed deadline</b> interval measures the time that has passed since the deadline for a still-open assignment. Can be configured in 
+    Dev Studio only can be repeated a fixed number of times or until the user completes the assignment. You can continue to increase the 
+    assignment urgency and send an escalation action each time the passed deadline elapses. Limit passed deadline events to field. <br>
+    If the urgency is 100 at deadline, Pega ignores the urgency increment and notifies the assigned user. The user is notified at each 
+    passed deadline interval.
+
+
+    <h2>Decision tables and decision trees</h2>
+
+    A <b><u>decision table</u></b> uses a set of conditions to test property values and return an appropriate response. Used by dev when 
+    they have to evaluate many combinations of the same set of properties/conditions to return one value/property.
+    In Dev Studio, with additional capabilities of decision tables, you can delegate responsibility for maintaining decision logic, 
+    expand the result options, and direct flow processing. (A decision table rule is created in the Work-class in Dev Studio). <br>
+    A decision table can be delegated to a stakeholder who can update the decision logic to meet the changing needs.
+    <b>Delegation options</b> in <b>Results</b> : you can choose what options are available for the process owner. <br>
+    In Dev Studio, a decision table can return all successful results (<b>Evaluate all rows</b> check box in <b>Results</b>). <br>
+    <u>Authority matrix</u> : identifies required approvals for each row of conditions. <br>
+    <b>Additional allowed results</b> section : add entries to the allowed results. <br>
+    Decision tables can be used in a process to determine the next step in a flow or to route an assignment. To determine the 
+    appropriate operator or work queue for the assignment.
+    <br> <br>
+    A <b><u>decision tree</u></b> can be used to handle logic that returns a result from a set of test conditions. It consists of a 
+    series of branches that contain more and more specific conditions, leading to a return value (result that evaluates to true). 
+    Used by dev to evaluate conditions on different properties that might depend on other conditions (based on top-level conditions).<br>
+    Condition branches : a comparison value, a comparison operator, and an action. <br>
+    You can reference decision trees in flow rules, declare expressions, activities, or routers. <br>
+    <b>Nested branches :</b> more than 2 possible outcomes.
+    <p class="ex">Ex : The first condition states that if the request is for more than USD100, then the request must be routed for approval. 
+        Two possible approval results exist. If the Consulting department submits the request, the request advances to the Compliance 
+        department for approval. Otherwise, the request advances to the work manager for approval. If the request is for less than USD100, 
+        then approval is not needed.
+    </p>
+    While decision tables evaluate against the same set of properties or conditions, decision trees evaluate against different properties 
+    or conditions. <br>
+    You can reference a decision table or decision tree on flow rules, declare expressions, activities, or routers. <br>
+    Which one to use ?
+    <p class="ex">Ex : Consider a wizard that guides bank customers through a set of questions and returns the account type that best fits 
+        their needs. You can configure the decision with a decision table or a decision tree. Using a decision table to select an account 
+        type results in empty boxes, while using a decision tree results in duplicate conditions. </p>
+
+    <h4>Tests</h4>
+    Tests to identify potential gaps in the decision rule execution : missing conditions, conditions never tested... <br>
+    <b>Show conflicts</b> identifies rows or branches never used = unreached conditions. (<b>Conflict tests</b>).
+    A decision rule without conflicts is said to be <u>consistent</u>. 
+    <p class="ex">Ex : your decision table contains a row that tests for purchase requests that exceed USD300. The next row tests 
+    for purchase requests that exceed USD500. The second row may never be evaluated, because the upper row includes that condition.</p>
+
+    <b>Show completeness :</b> identifies missing conditions in decision tables or missing branches in decision trees. Adds rows for 
+    suggestions.
+
+
+    <h2>Cascading approvals</h2>
+
+    Cascading approvals model a series of approvals. 
+
+    <h3>Reporting structure</h3>
+
+    Cascading approvals based on reporting structure require the approval of a user's direct manager, as well as higher-level managers. 
+    Can use business logic to determine the number of required approvals. <br>
+    In Pega : <b>Approve/Reject</b> step, <b>Cascading</b> option and <b>Reporting structure</b>. Number of approvers : <br>
+    One : Reporting Manager or Workgroup Manager <br>
+    All : the entire manager hierarchy (manager, senior manager, director, VP) <br>
+    Custom : Number of levels needed to evaluate When rules.
+    <p class="ex">Ex : an expense report requires manager approval before the accounting department can process the payment.
+    Depending on the total of the expenses submitted, the expense request may also need approval by a senior manager, a director, and 
+    a vice president. </p>
+
+    <h3>Authority matrix</h3>
+
+    More flexible than a reporting structure. When configuring a process that requires approvals from multiple entities, with at least 
+    one entity outside of the reporting structure, within and external to the user's organization. Requires configuration of a data 
+    structure that identifies the approvers. 4 ways of populating the data structure : <br>
+    a <u>decision table</u> to identify the approval levels and corresponding parties. Approval assignments are routed to approvers in 
+    the order of list appearance. data page, activity, data transform. <br>
+    In Pega : <b>Approve/Reject</b> step, <b>Cascading</b> option and <b>authority matrix</b>. Can select a decision table, select a 
+    page list property that stores the users giving their approval, select a property that references the approving users.
+    <br>
+    Select evaluate all rows in the decision table : all conditions are tested, the system does not stop after the first condition 
+    satisfied. <br> 
+    
+    <h2>Teams of users</h2>
+
+    <h3>Work group</h3>
+    A work group identifies a cross-functional team that contains a manager and a work queue. Operators associated with a work 
+    group can share work among operators in different business units. Each work group contains one work queue. Both are inseparable.
+    An operator can belong to several work groups. Work groups allows businesses to manage how individuals share work without affecting 
+    the organizational hierarchy. A work group designates a work group manager. He uses the User Portal. There are <b>Authorized 
+    managers</b> who can perform some of the manager responsibilities. <br>
+    A work group gives users access to a work queue shared among users from different business units.
+
+    <p>A <b>work queue</b> is a shared workbasket of work items that operators, who are assigned to a work queue, can access.
+    A work queue is similar to a worklist. However, a worklist contains only the work assigned to a specific operator.</p>
+
+
+    <h2>User Interface </h2>
+
+    <h3>Designing UI for multiple devices</h3>
+
+    Responsive behavior provides an optimal user experience of the elements in a view regardless of screen size — minimizing 
+    horizontal scrolling and maximizing data presentation in the available display space. Ex : from laptop to mobile, from landscape
+    to portrait. <br>
+    A <b>breakpoint</b> defines a display width. When the display width crosses a breakpoint, the responsive behavior is applied to 
+    the layout (changes the layout of the fields). <br>
+    Responsive breakpoint behaviors :
+    <ul>
+        <li>Hide this component (if not core to the business process)</li>
+        <li>Transform to other format (For ex Two- or Three-Column to Single-Column)</li>
+        <li>Transform to list (condense the table into a single column)</li>
+        <li>Drop columns with importance <b>Other</b> (display important columns, hide optional ones)</li>
+    </ul> 
+
+    In App Studio, the layout of the fields is limited to the available design templates. You can configure the view at run time.
+    You can preview your application with the <b>Preview</b> feature but you still have to test it on actual devices.
+
+    <h4>Tabular data and column importance</h4>
+    When the display size changes, less important info are removed but it must align with the business needs. Can be configured at run
+    time.
+    <ul>
+        <li><b>Primary</b> column contains the critical piece of identifying information. The information in this column should be 
+            unique for each row (ex : id). Only one. Left-most column; always displayed.</li>
+        <li><b>Secondary</b> column contains information required to perform a task (ex : unit price, quantity, total value).</li>
+        <li><b>Other</b> contains information that have minimal impact on a task (ex : product description) (only in Dev Studio).</li>
+    </ul>
+    At wider breakpoint, Other columns are not displayed. At narrower breakpoint, the table is displayed as a list. <br><br>
+
+    <b>Best practices :</b> <br>
+    - do not edit column width, set to 100% so it adapts. <br>
+    - mobile-specific design considerations: <br>
+    * offline use (app must be available when mobile is in airplane mode or with no network. ex : the user can complete and submit a 
+    form, it will be passed to the server when online. Use data pages as data sources). <br>
+    * device characteristics (actions for mobile. ex : hover actions are not supported on mobile devices, double-clicks to avoid. 
+    Simple UI. Auto-generated controls. Incorporate native device features). <br>
+    - design an application that is compatible across device types instead of customizing it to provide a mobile UX different from tablet 
+    UX. <br>
+
+
+    <h3>Form appearance</h3>
+
+    When you create fields in App Studio, Pega Platform™ automatically creates a property in the background. Advanced settings in Dev 
+    Studio.  <br>
+    A field is the combination of a property, which handles data, and a control, which handles the data presentation. Controls serve as 
+    a link between the property that stores information and the display of information in the user interface. To collect user input or 
+    perform an action on the UI. When you add fields to the UI, Pega assigns the default control based on the field type. 
+    <p class="ex">Ex : On a sign-in form, the <b>Username</b> field is text type, which is displayed as a text box. The <b>Remember me on
+         this device</b> field is a boolean type, which is displayed as a check box.</p>
+    Property modes :
+    <ul>
+        <li><b>Value modes</b> describe a single piece of information, such as a total. Controls are used to present the value of a value
+             mode property.</li>
+        <li><b>Page modes</b> describe a data type, such as a customer, that then includes data elements for customer name, customer 
+            address, and customer id. Layouts/property containers, present page mode properties; that cannot be mapped to a calendar 
+            control or a button.</li>
+    </ul>
+
+    <b>Layouts</b> visually organize data elements, such as fields, on a user interface. You can place fields, controls, and other layouts 
+    into a layout to quickly organize content. Pega provides out-of-the-box layout templates. You can create or update layout templates 
+    only in Dev Studio.
+
+    <p><b>Repeating layouts</b> are a type of layout used to organize lists, tables, and other repeating structures. 
+       <u>Table layout</u> to present tabular data in a series of colums and rows. For simple text entry controls.
+       <u>Repeating dynamic layout</u> to group and present content in a non linear, more aesthetic format. Responsive behavior of repeating 
+       layouts. To use lists to display a section for each item (Each section can contain any number of layouts) or include an image/graphic.
+    </p>
+    <p><b>Dynamic layouts</b> are a type of layout that arranges items you designate, such as fields and controls, in a flexible format that 
+        automatically adjusts to screen size. Wrapping content to eliminate the need for horizontal scrolling. </p>
+
+    Design templates are pre-formatted layouts. When the design template is based on a dynamic layout, a change to the screen size can 
+    rearrange the contents of the view. Easily update the structure of a form. You can combine the templates, for instance, put a 2-column 
+    template in a column of a 2-column template. <br>
+    The view can be updated at run time in App Studio.
+
+    <p>
+    <b>Controls</b> are UI elements that determine how data, text, images, and other information appear on user forms for both display 
+    and user input. Control has a unique look and provides different functions for users. Controls are not necessarily associated with data. 
+    For instance, a buttton control to edit a profile is associated with no data.
+    <ul>
+        <li><b>Control types : </b>ensures users enter valid values. Date Time (ensures a valid format), Radio buttons (restricts choices to
+            a set of valid values, only one choice), Dropdown (restricts valid values to the ones in the list), Autocomplete (the control 
+            filters the available options when users enter a value, dropdown), Checkbox (select or leave it blank, true/false property)</li>
+        <li><b>Editable settings :</b> on controls to restrict the input values to valid formats. Ex : select a date from calendar icon, not 
+        an input text; number of characters allowed in a text input control.</li>
+        <li><b>Required fields :</b> esnures the user enters a value.</li>
+    </ul>
+    </p>
+
+
+    <h3>Layout groups</h3>
+
+    A layout group separates content into individual panels and permits users to view a group of related data one panel at a time.
+    Optimize the space on UI views without sacrificing the amount of information presented at once. Improve access to content for users 
+    while reducing or eliminating the need to scroll the browser window. Can be configured to organize panels of information in a stacked 
+    (vertically, for large screens), tab (series of tabs), accordion (vertically stacked list to reveal/wrap), or menu format (groups 
+    accessed from a menu, help reduce vertical scrolling).
+    
+
+    <h2>Localization</h2>
+
+    Localization is the process of adapting internationalized software for a specific region or language by adding locale-specific 
+    components and translating text. (Ex: currency, date format, time zones). Pega includes features and wizards to facilitate localization.
+    <br> Localization process in stages. <br>
+    To ensure that you design your application for localization, create <b>field</b> value rules for capturing labels and notes, 
+    <b>paragraph</b> rules for instructions and messages, and <b>correspondence</b> rules for emails and other correspondence. Once these 
+    elements are added to your application, they can be localized for most languages. <br>
+    Field values enable you to manage the list of allowed values separately from the property. <br><br>
+    Pega Platform provides language packs (collections of language-specific rulesets that support the localization of Pega Platform) to 
+    localize the Pega rules (except the content on your UI forms). Install the language packs (if available. if not, you can create your 
+    own custom translation pack. Use the Localization wizard to export and translate the Pega rulesets and content on your UI forms.) 
+    before you run the <b>Localization wizard</b>.
+    <br> <br>
+    Pega Platform provides a Internationalization and localization wizard that automates many of the steps necessary to create 
+    language-specific versions of your application. The <b>Localization wizard</b> identifies field values and text strings that are used 
+    in user interface rules. <br>
+    Field value rules for labels or text strings under 64 characters. <br>
+    Otherwise, paragraph rules. Make content reusable. Ex : UI form, copyright declarations, privacy notifications. 
+    <br> <br>
+    Rules such as correspondence, paragraph, and work party rules contain text that is translated manually and stored in the corresponding 
+    translation ruleset with the aid of the Localization wizard. Text that is used in paragraphs, correspondence, and correspondence fragment 
+    rules is packaged and output in a pair of HTML files called Base.html and Translation.html. Then the translator puts the translated text
+    in Base into the Translation.html file.
+
+
+    <h2>Application accessibility</h2>
+    
+    Designing for accessibility enables your application to support a wider audience of users.
+
+    <h3>Accessibility roles</h3>
+
+    <b>WAI-ARIA (Web Accessibility Initiative-Accessible Rich Internet Applications)</b> standard is supported by Pega Platform. It is a 
+    technical specification that defines ways to make digital content and Web applications more accessible to people with disabilities by 
+    using WAI-ARIA roles = specific attributes applied to UI elements. The roles enable communication between assistive devices and Pega 
+    Platform applications about UI elements. Three types of WAI-ARIA roles :
+    <ul>
+        <li><b>Landmark roles</b> organize content within a portal to improve navigation when using a screen reader by providing quick access
+        to specific areas of the page.</li>
+        <li><b>Document structure roles</b> describe the structure of the page content. Not interactive. Elements such as row or column 
+            headings, notes, or presentations.</li>
+            <li><b>Component/Widget</b> is an interactive interface object. </li>
+    </ul>
+    By default, Pega Platform assigns WAI-ARIA roles to UI controls and other components, such as screen layouts and dynamic containers.
+    <br>
+    Best practices to support the use of assistive devices : <br>
+    - provide labels for all controls (buttons, links, icons, input fields) <br>
+    - configure a high contrast scheme <br>
+    - set keyboards commands for controls <br>
+    - use buttons only for actions and links only for navigation <br>
+    - mark only one container as the main content area by default <br>
+    - use a drop-down list of options instead of text entry for fields with predictable answers <br>
+    <br>
+    The <b>Accessibilty Inspector</b> tool allows you to identify accessibility issues within your application. Ex : color blindness, 
+    labels for images... Organizes issus into 4 categories : 
+    <ul>
+        <li><b>Content -</b> issues with configuration of controls (ex: icon missing helper text or label)</li>
+        <li><b>Structural -</b> issues with the organization of content within the portal (ex: heading level hierarchy is out of order)</li>
+        <li><b>Interactivity -</b> issues affecting how assistive devices navigate the UI (ex: the skip to content navigation is missing from 
+            the portal configuration)</li>
+        <li><b>Compatibility -</b> issues with the Pega UI elemnts used on a form (ex: a form uses a tab group layout instead of a layout 
+            group)</li>
+    </ul>
+    The <b>Disability preview</b> option allows you to observe how your app appears to users with one of 4 types of color vision deficiency :
+    <ol>
+        <li><b>Achromatopsia (absence of color)</b></li>
+        <li><b>Deuteranopia and Protanopia (red green confusion)</b></li>
+        <li><b>Tritanopia (yellow blue confusion)</b></li>
+    </ol>
+
+
+    <h2>Application security</h2>
+
+    Inadequate security can prevent your application from being deployed. Most clients require approval from an IT security team who reviews 
+    the application security before the project team is allowed to move the application to production. Deployment Manager blocks applications 
+    from being deployed in production if the Security Checklist is not completed. 
+    The four critucal security areas :
+    <ul>
+        <li><b>Data Encryption :</b> protects sensitive data within your app without affecting the functionality of Pega. You can select the 
+        encryption type. Encrypt/decrypt passwords/properties/BLOBs. Ex : social security numbers, credit card numbers.</li>
+        <li><b>Authentication :</b> ensures that users and systems whose identities have been verified can access your app. Authentication 
+        includes user logins, platform requests to external services and external service requests to the platform.</li>
+        <li><b>Authorization (or access control) :</b> ensures that after logging in, a user only has access to the allowed platform features,
+        interfaces or data. Three types : role-based access control RBAC, attribute-based AC and client-based AC.</li>
+        <li><b>Auditing (or accountability) :</b> is a systematic evaluation of the security of company information systems. Security is 
+        measured by how well it conforms to a set of established criteria. Pega tracks many types of security events such as failed logins and 
+        password changes. Thus, you can understand how your system is functioning and be alerted of any potential problems.</li>
+    </ul>
+    Security is a shared responsibility between Pega and our clients. <b>AIC triad</b> :
+    <ul>
+        <li><b>Availability :</b> prevents delays for authorized individuals when accessing systems or data</li>
+        <li><b>Integrity :</b> prevents unauthorized individuals from modifying systems or data.</li>
+        <li><b>Confidentiality :</b> prevents unauthorized individuals from accessing systems or data. </li>
+    </ul>
+    The Security Checklist is a key feature of Pega Platform that assists clients in hardening their applications and systems. 1) Defines 
+    best practices 2) Identifies critical tasks 3) Establishes task timing 4) Performs as a tracking tool 5) Protects your application 
+    <br> <br>
+    To protect your application, use the built-in security configuration features in Pega Platform. Do not rely on custom code built by 
+    developers who are not security experts.
+
+    <h3>Security policies</h3>
+
+    <b>* Application-level security :</b> focuses on protecting the application from outsiders and unauthorized users. 
+    Reduce the risk of unauthorized users getting into/stealing data from your application. Identify authorized users who need access to 
+    the app. Create password and authentication policies. -- > using third-party security tools or setting up multi-factor authentication.
+    <br>
+    <b>* Feature security :</b> focuses on the app by determining the case types, features, and data that authorized users can or cannot 
+    access. Set up security roles for personas identified in each case type so that authorized users can access the app features they need.
+    Prevent users from viewing features or accessing data to which they should not have access. Design types of access control.
+    <br> <br>
+    In App Studio : Authentication landing page > Securities Policies tab. <br>
+    In Dev Studio : Org & Security > Authentication > Security Policies. <br>
+    The Security Policies tab is separated into a Frequently required policies section (Password, CAPTCHA, Lockout, and Audit) and 
+    Other policies section (Multi-factor authentication (ex: password+mobile number+fingerprint) and Operator disablement).
+
+
+    <h2>Application access</h2>
+
+    Each user of an app is associated with an Operator record which describes the user's Operator ID. The record also references one or 
+    more Access Groups : only one active at a time. The record for the operator ID allows for authentication of a user.<br>
+    An <b>access role</b> categorizes users according to their job function and represents how a set of users interacts with an app to 
+    create and process cases. Ex : any user can submit a purchase request but only a manager can approve a purchase request. 
+    Each access group references one or more access roles. When more than one role is listed on an access group, the permissions associated 
+    with other access roles are considered (Pega applies the most permissive setting across all the listed roles). 
+    <p class="ex">For example, the Manager role has permission to run reports, but the User role does not. If the Manager access group 
+        includes both the Manager and User roles, then all members of the access group can run reports.</p>
+
+    <b>Persona access</b> landing pages in App Studio and <b>Access Manager</b>. You set permissions for the access roles associated 
+    with a particular access group.<br>
+    
+    Access control for a case type is managed through two types of records that can be edited :
+    <ul>
+        <li><b>Access of Role to Object (ARO)</b> records are used to specify permissions for items of a specific class for members of a 
+            specific access group. Setting the ARO to No Access indicates that the user is denied access.</li>
+        <li><b>Access Deny</b> records are used to override AROs to explicitly deny access in situations where regulations or policies 
+            require an explicit denial of permissions. Access Deny records provide an extra layer of security even when the ARO record is 
+            set to No Access.</li>
+    </ul>
+
+    Production levels control the types of permitted changes and specify the purpose of the environment. On a scale from 1 to 5.
+    0 : Deny the action, 1 : Sandbox system, 2 : Development system, 3 : Quality assurance system, 4 : Staging system, 5 : Production system.
+
+
+    <h2>Debugging application errors</h2>
+
+    The <b>Tracer</b> is a tool that allows to find the root cause of an error and fix it. Ex : property not displayed in the UI, unexpected 
+    result. Used to capture and view each event. App Studio : Runtime toolbar. Dev Studio : Developer toolbar.<br>
+    Tracer displays each event on a separate row, identified by a thread, event type, status (Good or Fail), Name, Ruleset. Each can be 
+    selected to view more details.<br>
+    The records are displayed according to the following color code: 
+    <b>Gray</b> - activity processing; <b>Orange</b> - events from flow, decision or declarative rules; <b>light blue</b> - PegaRULES database
+    and cache operations. 
+
+    <p>Using the Tracer is resource-intensive and dramatically slows application performance -- > configure the Tracer settings to capture 
+    only the required information. <br>
+    <b>Pause :</b> suspends event logging in the Tracer; <b>Clear :</b> removes all logged events from the screen; <b>Save :</b> generates an 
+    XML file that lists the events on the screen. <b>Settings :</b> selects the rule tyes, rulesets, events and pages to trace, identify a 
+    tracing and exection break condition, when a step results in a Java exception; <b>Breakpoints :</b> identify when to stop execution once 
+    the app reaches a specific step; <b>Watch :</b> monitor a property value or page to detect when the value changes; <b>Remote tracer :</b> 
+    trace events generated by a service requestor or another user.</p>
+     
+
+    </body>
+</html>

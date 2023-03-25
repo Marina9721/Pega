@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>PEGA</title>
+</head>
+<body>
+
+    <h1 class="title">PEGA (Low-Code App Builder)</h1>
+
+    Low-code development : products and/or cloud services for application development that employ visual, declarative techniques instead of programming
+    - Creating software that writes your software. <br>
+    Low-code development tools create the code for you. Increases productivity, simplify development. Outpaces the traditional one-size-fits-all approach.
+    Bridges the gap between business stakeholders and skilled developers, creates a common visual language to collaborate more effectively, more agile => 
+    explain the business logic rather than the code. Build a mobile and web-based request system with notifications for collaboration and SLA tracking. <br>
+    Pega platform can be used to create very robust applications.
+
+    <h2>Workspaces </h2>
+    <ul>
+        <li><b>App studio : </b> low-code or no-code workspace designed for citizen developers and technical staff (business analysts, 
+            system architects, front-end developers, data engineers).
+        Users can design cases, manage data and design the user interface. The visual model helps plan and manage team's workload. 
+        Get results while saving time (add value asap), contextualize the user's needs. </li>
+        <li><b>Dev studio : </b> low-code workspace with advanced configurations for technical team members (full-stack dev, database and
+             security admin, SA). To go deeper into the Pega platform, more concepts than App studio (+200). Manage operators and access groups.</li>
+        <li><b>Prediction studio : </b> analytics workspace used by data scientists and business decision-makers. Build machine learning 
+            models. (AI, Next Best Action). </li>
+        <li><b>Admin studio : </b> software administration workspace managed by IT staff for system administration (monitoring, security, 
+            debug, run-time, cloud, DevOps).</li>
+    </ul>
+
+    <p>Integration : Pega simplifies the connection of the application to distributed resources (ex: external databases). Graphically maps
+         the data into the application for a holistic view.</p>
+    
+    <h2>Design system</h2>
+
+    A builder kit = shared library of UX patterns that speeds up design and development time. <u>Constellation design system </u> to 
+    build app quickly and keeps the app easy to update for future releases. Provides presentation layer that includes the information 
+    architecture, intercations, accessibility, data visualizations... (other : Cosmos design system). 
+    Context switching, multitasking, <u>modular design</u>, filtering, collaboration view, AI-powered collaboration tools, responsive templates...
+    <p>Responsiveness : menu names and icons are displayed differently depending on the screen size. 
+        ==> modular design (allow users to learn the meaning of discrete elements on the screen to be re used in multiple contexts).</p>
+    Dashboard shows info without needing to scroll, adapted for any business case. <br>
+    The summary panel contains critical information about the case. The size and shape are similar to a mobile device. 
+    It is placed on the upper left because this is where users tend to look for context.
+    The global navigation is on the far left. It is not limited to Pega-branded assets.
+
+    <h2>Journey configurations and cases :</h2> <a href="microjourney.html">Journey</a>
+
+    <h2>View</h2>
+    A view is a component of the UI that gathers information from a user or displays information to the user. Displays the fields 
+    necessary to complete the current assignment. For example, in an application the view for applicants to enter their personal info 
+    is different from the view for the officer who sees applicant's information as read-only fields and who can approve or reject 
+    with a field for the reason. <br>
+    The view is not always a form. Views have fields, forms can have buttons.
+
+
+    <h2>Multi-step forms</h2>
+    A form is an interface for collecting data from users and processing the work. A form can have one or more views. When it requires a 
+    lot of data, multi-step form is used to help users complete complicated tasks : presents information in multiple focused and concise 
+    screens. Users can enter, save and change info as long as the screen is not submitted.
+    
+    <p>Draft mode allows to quickly run the case type even with incomplete configurations or errors to check the run-time behavior.
+        Must be turned off before the app is released to production. It is automatically switched off when you save a case type that has 
+        processes with no errors.
+    </p>
+    
+
+
+    <h2>Data modeling</h2>
+    Process by which <b>data elements</b> arrive into your application in a format that makes sense for your business (to determine
+    before create the data model) and are then processed, reported on and stored.
+
+    <h3>Data model : </h3> defines the types and structures of data in our application and standardizes how data elements relate to one another.
+
+    <h3>Data object (= data type) : </h3> template for describing an entity (person, item, ...) by grouping a set of related fields or 
+    <b> <u>data elements = field name + stored value</u> </b>.
+    Key business entity, contains all the fields necessary to describe the entity.
+    A field is a named, reusable UI component. It is associated a field type. (Type User Reference for a picklist of user ID).
+    <p class="ex">Ex : field : name, field type : text, value : Marina. name + Marina = data element</p>
+    Data objects be re-used for several case types. <br>
+    Associated to a <u>data page</u>.
+    
+    <p><b>Data relationship</b> : a data object can contain other data objects. We can also use inheritance. </p>
+    <p class="ex">Ex : the data object Candidate contains the data object Address (one-to-one) and the data object Employment history (one-to-many).
+        The data object Candidate is a child of the data object Person. It contains the information of a Person (fields) plus the information necessary to 
+        describe a Candidate.
+    </p>
+
+
+    <p> <b>single record :</b> single entity grouping related field (single set of values)</p>
+    <p><b>multiple records :</b> list of entities grouping related fields</p>
+
+    <h3>Data pages : </h3>
+    identify how to connect to the system of record and what fields to map in the data object. Provide links
+    between data records and the application. The Visual data model is a diagram that shows these links : 
+    relationships between data objects (one-to-one, one-to-many...). You can add, update, delete fields while viewing.
+    
+    <h3>Data records : </h3> provide values for the fields of a specific data object. Local data storage or external database
+    but is not part of an application.
+    Each record has an identifier pyGUID.
+
+    <h3>Data storage : </h3>
+    <h4>Work class : </h4> contains rules that describe how to process cases (processes, data elements, UI)
+
+    <h4>Data class : </h4> contains rules that describe the data types in the application (customer data type, order items data type).
+    Data that exists outside of data objects (to be easy to share, portable)
+
+    <p>Use of the <b>Configure a view</b> screen to add new fields as needed </p>
+
+    <h4>Data type sourcing : </h4>
+    <ul>
+        <li><b>Pega system of record (SOR) :</b> ex New Candidate application</li>
+        <li><b>External system of record (SOR) :</b> ex HR database, the candidate data are already saved somewhere</li>
+        <li><b>No system of record (SOR) :</b> ex </li>
+    </ul>
+
+    <h4>Field types :</h4>
+    <ul>
+        <li><b>Case reference :</b> single or multiple records from a selected Case type by id</li>
+        <li><b>Data reference :</b> single or multiple records from a selected data page by id (both used to show a user a list of options)</li>
+        <li><b>Embedded data :</b> users-supplied data sourced from inside a case type (information provided by the user durign the case)</li>
+        <li><b>Query :</b> a data page or view that is not sourced from inside a case type</li>
+    </ul>
+
+    Integration designer : provides a single location in App Studio for viewing data objects, data pages, object dependencies and 
+    external systems in an app.
+    The Integration map is a diagram of the data objects, cases and systems of record in the app and where they are sourced.
+    (visualization tool that shows the relationships between data objects, data pages and systems of record).
+    
+    
+    <h2>Calculation</h2>
+    Calculation expresses a relationship between fields by setting the value of a calculated field based on one or more input fields. 
+    For instance an online shopping cart app provides a total coest for each item ordered based on unit price and quantity ordered.
+    Calculation occurs when users update the value of an input field. We can create networks of dependent calculations. <br>
+    It reduces mistakes by avoiding manual computations.
+    <ul>
+        <li><b>Functions </b>ierate over items in a list (sum of, average of, maximum of, minimum of)</li>
+        <li><b>Expressions </b>calculate a field value by referencing any combination of simple and fancy fields and data relationship values (+,-,*,/,(),AND,OR)
+        (ex : total cost for 2 products : price*quantity+price*quantity)</li>
+        <li><b>Decision tables </b> use a set of conditions to test property values and return an appropriate response</li>
+    </ul>
+    Input values/fields = declare expression, result = target property
+
+    <h2>Service-level agreement :</h2>
+    <a href="SLA.html">SLA</a>
+
+    <h2>Email correspondence</h2>
+    Step "Send email". When the case reaches this step, the email is automatically sent to the selected parties.
+    In configuration pane : Send to "field" "customer email" to get the email that the Customer entered in case of updates. <br>
+    Send correspondence to a group of stakeholders. 
+    Participants : Owner (the person who created the case), Customer (the perdson on whose behalf the case is transacted), 
+    Interested (a person who tracks the progress of a case without processing it). <br>
+    "+ compose" to write the email that will be received. Referencing fields with "<<.field_name>>". <br>
+    Case-level notifications : send notifications to the user associated with the worklist. "Settings" "Notifications" checkbox
+    "Email user when the assignment is routed to worklist".
+
+
+    <h2>To go further</h2>
+    <a href="extended.html">Low-Code App Builder Extended</a>
+
+</body>
+</html>

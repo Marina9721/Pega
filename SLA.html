@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>SLA</title>
+</head>
+<body>
+    <h1>Service-level agreement</h1>
+
+    Establishes a work completion deadline, to enforce on-time performance.
+    Beneficial to delay processing a SLA to account for assignments that are not immediately ready for users.
+    SLA can be configured on case types, stages, processes and Collect information and Approval steps. <br>
+    The goal defines how long the assignment should take (from when the assignment started). The deadline defines 
+    the longest amount of time the assignment may take before it is considered "late".
+
+
+    In PEGA, we can use the <b>Assignment Ready</b> field. <br>
+    <ul>
+        <li> <u>Immediately</u> : assignment is immediately ready and users can begin work immediately</li>
+        <li> <u>Dynamically defined on a property</u> : use of a DateTime property value defined to determine when users 
+            are expected to start work on assignments </li>
+        <li> <u>Timed delay</u> : to start the assignment after a period of time (days, hours, minutes)</li> 
+    </ul>  
+
+    <h1>Assignment emergency</h1>
+
+    Numeric value ranging from 0 to 100 that brings visibility to unresolved work (to cases or assignments).
+    It is used in GetNextWork selection algorithm to identify the next assignment a user should work on.
+    The urgency increases by a defined value when the goal is reached. <u>Escalation actions</u> : Notifications can be sent 
+    to the assignee or the assignment can be tranferred to someone else or the case can be seolved as goals or deadlines 
+    occur. By default, case urgency is 10.
+    <p class="ex">Employees must submit a timesheet within 2 business days but no later than three business days. <br>
+         Start (0 hours) : +0. Goal (48 hours) : +10. Deadline (72 hours) : +10. <br>
+
+    </p>
+    
+</body>
+</html>
+

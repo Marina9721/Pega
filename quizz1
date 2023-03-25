@@ -1,0 +1,55 @@
+1. What tasks correspond to a Business Architect : 
+Works with SMEs and stakeholders to understand business needs
+Advocates for business users
+2. How do you configure the resolve process to support sending email notifications automatically after a claim is resolved in the Resolve stage?
+Add a Send Email step and include all required parties
+3. As part of a purchase order case, after someone completes a purchase, a confirmation email is sent. How do you design the case life cycle to send the email? 
+As a separate process step
+4. Which two options inform a user by email when an assignment is added to the worklist of the user?
+Configure the case type to send assignment notifications to assigned users.
+Configure the assignment to send a notification to the assigned user.
+5. A requirement for a hotel reservation case type states that as customers change their room selection, the total cost of the reservation updates. How do you satisfy this requirement?
+Define a declare expression for the total cost field.
+6. Why would you use responsiveness in Pega User Interface (UI)?
+To display or hide UI elements and rearrange screen layouts depending on the device
+7. As a business architect, you take the following steps to help your team:
+Ensure that users are involved in activities like user research and user testing.
+Verify that your team has a plan for incorporating UX design.
+8. What can you create from the Agile Workbench? 
+Feedback
+9. What is the studio of choice to manage Operators and Access Groups? 
+Dev Studio
+10. What pillar should be used to describe the object customer as well as the system its details are coming from? 
+Data and Integration
+11. A bank would like to offer the possibility to the customer to request an email with the IBAN (International Bank Account Number) at any time during the “Account Creation” case. What action are you suggesting?
+Add an optional action using a user action
+12. A lending company wants to set up a manager approval for all loan applications greater than £10k. If the manager approves then the case can move on to the next stage otherwise an email has to be sent to the borrower. What are the two options you are using to configure an approval flow? 
+Reject and change stage
+Approve and continue
+13. An insurance company wants to ensure there is a double approval during the estimation of any luxury item of jewelry that is worth more than €10k. Approval can be done in any order but both must be completed before moving on to the next stage. What is your design approach to prototype such behavior? 
+Parallel processes with 1 approval steps in each in a stage
+14. When a customer is calling in an ISP to become a new client, an operator is capturing some details. The client details are stored in a DB during the call. A new contract is added to the Client as well. What will you define as personas?
+Customer
+Operator
+15. What will happen to an assignment when the urgency reaches 100 when passing the Goal?
+The urgency will not be increased further and the escalation actions will be executed.
+16. Where can you configure an SLA? 
+An Approval step
+A Stage
+17. At design time, you figure out that a process would need an urgency, a status and/or is independent, you should transform it to: 
+A case type
+18. What rule is created when creating a process?
+Flow rule
+19. Which two of the following methods, can you configure one stage in the case life cycle to advance to the next?
+Configure automatic stage transitioning in the stage contextual property panel
+Add a change stage step
+20. Which two statements identify a benefit of using calculated fields?
+Calculations reduce mistakes by avoiding the need for manual computation of values
+Calculations automatically update fields whenever input values change.
+21. An insurance company has different departments for each type of contract (Home, Car, Jewellery). Each Department has a work queue. The company requires you to assign approvals to the department based on the type of contract. For instance, jewelry approval should go to the Jewellery department.
+Route the assignment to the correct work queue based on business logic.
+22. In a loan application case, a manager and a loan officer must receive automatic email notifications when assignments are routed to their worklists. How do you configure this correspondence requirement? 
+Enable assignment notifications for the case type.
+23. In a mortgage loan case type, applicants enter data in the Credit score, Income, Assets, Liabilities, and Loan amount fields. The data is submitted on different processes in the case type. The system informs applicants that, based on the data they provided in the Financial information stage, there are no loans available, and the case does not enter the Loan stage. How would you configure the case type to perform the data validation described in this scenario? 
+Configure business logic validation on the Loan stage.
+

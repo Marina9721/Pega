@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Roles</title>
+</head>
+<body>
+    <h1 class="title">Roles in Pega</h1>
+
+
+    <ul>
+        <li><b>Citizen developer :</b> non-technical business user who participates in the application development. 
+        Brings valuable knowledge about business needs and may perform the role of SME on a small Pega project.</li>
+        <li><b>System architect (SA) :</b> designs and configures the app. Led by a <b>Lead SA (LSA) :</b> design the overall 
+            architecture. <b>Senior SA (SSA)</b> configure interface froms and automated decisions. Object-oriented design 
+            and technical implementation skills. Advocate for business users.</li>
+        <li><b>Business architect (BA) :</b> works with SME and stakeholders to understand business needs.
+        Defines business rules, SLA and processes.</li>
+        <li><b>Subject matter expert (SME) :</b> has deep understanding of a particular business domain.
+        Works with the project team to convey (transmit) business needs and helps validate information accuracy.</li>
+        <li><b>Scrum master :</b> ensures all team members understand Scrum theory and practices. Facilitates Scrum events 
+        (daily meeting, sprint review...)</li>
+        <li><b>Product owner :</b> owns the product backlog and prioritization of user stories. Creates acceptance criteria.</li>
+        <li><b>Quality assurance :</b> creates and runs functional and performance test scripts, Scrum team.</li>
+        <li><b>System administrator and IT resources :</b> provide experstise (infrastructure, security, integration...)</li>
+        <li><b>Specialty architects :</b> engage with project development depending on project needs and skills alignment.</li>
+        <li><b>Consulting solutions executive (CSE) :</b> provides leadership, oversees project delivery and direction, 
+            establishes best practices.</li>
+        <li><b>Project delivery leader :</b> provides overall project plan and delivery guidance.</li>
+    </ul>
+
+
+    <h3>Estimation :</h3>
+    To use the Estimator tool, first define : the <b>case type</b> (and case life cycle), the <b>personas</b>, the <b>data objects</b>  
+    
+    <br>
+    Channels and data objetcs are assigned to a release to estimate the duration for each release.
+
+
+    <h2>Personas and roles</h2>
+    <ul>
+        <li><b>Users</b> are created to perform application tasks but they do not all perform the same tasks. (Service Representatives 
+            different from Client user). A user is created with an email address and a role. </li>
+        <li> <b>Roles</b> define the tasks a user can perform. </li>
+        <li>A <b>Persona</b> is the business representation of a role/type of user. Share common application security and assignments. 
+            A user is assigned a persona. When you create a new persona, Pega creates default permissions and a work queue for the persona.</li>
+    </ul>
+    Add a new persona : Users > User Management > Add Persona. Then assign it to users in People.
+    
+    <b>Channels</b> in Pega refer to the user interfaces that are used to perform tasks. The needs of different users require access to
+    different application features. Channels are created before roles. <br>
+    <p class="ex">In a health application, patients can check records and schedule appoointments. Doctors can review patient records, 
+        record prescriptions... </p>
+    
+</body>
+</html>

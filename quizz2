@@ -1,0 +1,61 @@
+1. You can link a user story to? 
+a sub Feature
+A Feature
+2. Select two use cases supported by Agile Workbench. 
+During a peer review, the reviewer discovers and records an application bug.
+You need to adjust the due date for several user stories
+3. Which role is the advocate for business users?
+BA Business Architect
+4. Which set of tools allow SME/BA/SA to enter requirements in Pega?
+DCO
+5. In a warranty application, too many cases were found to be duplicate cases and it was difficult to resolve the cases. What measure do you suggest reducing the number of duplicate cases?
+Use Track Duplicates tab to adjust the condition weights
+6. Priya is configuring a duplicate case search step for identifying duplicate travel booking cases booked by the same customer. She plans to use customer phone number, travel date and travel location properties for identifying the duplicates. Which of the following would be the correct configuration? 
+Customer phone number as basic condition, travel date and travel location as weighted conditions
+7. As a customer I want to be able to cancel a request at any time. What is the best approach to configure this US (User Story)?
+Add a case-wide optional action
+8. Which requirement could be satisfied with an optional user action? 
+Allow a user to transfer a case to another employee at one specific stage of the case.
+9. When in the process of opening an account, the SME decides to add the possibility for the CSR to send an email to the customer, if the client requests it. The email will be populated with data coming from a series of forms. How to implement this? 
+optional process
+10. You should implement a decision shape when :
+An approval is needed if the booking is regarding the presidential suite.
+Need to apply a discount based on Customer status and Total amount of the purchase order
+11. Choose two use cases that require the configuration of conditional paths within the case type. 
+A scholarship eligibility application requires students to enter standardised test scores. Students with qualifying test scores can schedule an interview. Students without qualifying test scores receive a rejection email.
+A shopping application requires a guest to fill out payment information. A user who enters a membership number skips the payment information step.
+12. What is false about skipping process or stage?
+Use the same when rule to skip a stage and a process
+You cannot skip the first process
+13. You want to create a case and automatically make it a child; how do you achieve this? 
+Create a case in App Studio and use a create case step in the parent case in App Studio
+14. In a Sales application, during a purchase order (PO), providers must be contacted (PC) for the items that are not in stock anymore. How can you configure the case types to reflect the relationship? 
+Make PO parent of PC
+15. In an online shopping application, the primary case type PurchaseOrder has two child case types: Payment and Packaging. In processing PurchaseOrder case PO-11, the Payment case Pay-37 and Packaging case Pac-56 are created.
+16. Which statement about the processing of PO-11, Pay-37, and Pac-56 is correct?
+Both Pay-37 and Pac-56 must be resolved before PO-11 can be resolved.
+17. Which requirement is best implemented by using a Wait step in a case? 
+You cannot complete car accident claim if an injured person is still in the hospital.
+Wait using a timer to reference a date/time
+18. In the integration designer you can learn about what?
+Case Types
+Data Page
+19. What are the types of validation for data?
+Validate rules
+Property type
+20. A team designs an application and creates a product backlog using Scrum best practices. They also establish governance and enable the project team. In which phase of the Pega Express Delivery approach are these tasks completed?
+Prepare
+21. In which phase of Pega Express should Minimum Lovable Products (MLPs) be defined as well as the team get ready to begin the project? 
+Discover
+22. Which statement best describes the microjourneys that would be prioritised as belonging to MLP1 in the development item backlog?
+Higher Business Value, Greater implementation ease
+23. You have created a new report that contains a list of employees, hire dates, and managers. You have been asked to display each manager in a row. Beneath each manager row, you must list the employees of the manager and their hire dates. How do you support this request?
+Group the manager column.
+24. The number of customer support request cases created per week. What type of report is this? 
+Process report
+25. You want to display the number of cars sold per salesman in the last month (status of the case being resolved-completed), how do you configure it? 
+Summarize the case ID
+26. Based on this user story: As a car insurance holder I am not entering with the “Service Payment” stage when leaving the “Breakdown Details” stage if I am a platinum member. What is the best design approach? 
+Use a condition to skip the Service Payment stage
+
+

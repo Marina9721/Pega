@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Journey</title>
+</head>
+<body>
+    <h1>Journey configurations</h1>
+
+    A journey is a customer interaction. It is split into smaller pieces called microjourneys.
+
+    Deliver one goal at a time. To deliver an MLP release (Minimum Lovable Product = value-added solution
+    that addresses a business need or pain point and is a quick deliverable) we focus on 3 core elements (in App Studio) :
+    <ul>
+        <li><b>Microjourneys :</b> small part of the journey that focuses on one specific goal (request/results) </li>
+        <li><b>Personas and chanels : </b> people who interacts with the application (customer or company employee)
+            + how a persona interact with the application (web portal or chatbot).</li>
+        <li><b>Data and interfaces : </b> info that the microjourney interacts with to accomplish the goal + 
+        defines where the data comes from or where it is persisted. </li>
+    </ul>
+
+    <h2>Cases</h2>
+
+    <h3>Case type : </h3> abstract model of a business transaction (repeatable).
+
+    <h3>Case : </h3> specific transaction instance, is assigned a number. Collection of data.
+
+    <h3>Case life cycle : </h3> business model of the micro journey that can be defined in smaller 
+    modules. It models the path the case follows to resolution. The application functions the same way that users 
+    think about and describe their work, it helps visualize the work that must be completed.
+    For example an online order process : submit order + process order + deliver order.
+    The work is organized into <u>stages</u>.
+
+    <h4>Stage : </h4> it represents the case transfer from one caseworker to another (transfer of authority) or change in the 
+    <u>case status</u> ( = progress of a case towards resolution - updates at the beginning of the step).
+    <p class="ex">Ex : in an online order, customers place order, warehouse employees process order, 
+        shipping service employees deliver order => three stages : Submission, Processing, Delivery. </p>
+    Naming convention : a noun or noun phrase, meaningful and relevant. <br>
+    Stages are divided in processes that are divided in steps. Naming convention : 2 words max, verb+noun
+
+    The first stage is the Create stage (green bar) and contains processes and steps for users to enter initial data.
+    It cannot be deleted. <br>
+    Primary stages are stages that lead to an expected outcome. The majority of cases should go through them. 
+    Usual case processing. <br>
+    The resolution stage (red bar) is the last stage, it defines the case behavior at the end of the case life cycle. <br>
+    We can create parallel processes that can be done in parallel with no priority. <br>
+
+    Alternate stages are stages that handle deviations from the primary path in case of a approve/reject step. 
+    They represent a negative resolution stage or exceptions to the normal course of events or are used for exception handling 
+    to reenter the primary path when the exception is handled. They can be sequenced into primary stages. <br>
+    Automation steps are performed by the system (ex : change stage to re enter the primary path) but this stage must be added, 
+    alternate stages cannot be configured to change step automatically.
+    <br>
+    You can configure the stage transition in the property panel :
+    <ul>
+        <li>Automatically move to the next stage when all steps are complete</li>
+        <li>Wait for a user action</li>
+        <li>Resolve the case when all processes are complete (for the last one generally)</li>
+    </ul>
+    or with a Change stage step. <br>
+    Not more than 10 primary stages and 5 alternate stages per case.
+
+    <h3>Optional actions </h3>
+    Different from alternate stages : actions that users optionally perform, it is not part of the normal course of events. 
+    It can be a process divided in multiple steps or a user action if it one step only.
+    It can be an optional Change Stage action that may be called at any time during case processing.
+
+    <p class="ex">Ex : while reporting a car accident to an insurance company, the customer mentions having a new phone
+         number. The agent launches the Update Customer optional user action on a single screen. It returns to the primary 
+         path then. In case of an order cancellation, the Cancel Order optional process is launched and the case is Resolved.
+         Ex 3 : a user transfer the case to another employee at any stage of the case.
+    </p>
+
+    In the case designer, "Optional actions". Two possibilities : <u>case wide actions</u>, the optional action can be 
+    launched at any time during the case (1st example) or <u>stage-only actions</u>, the optional action can be launched 
+    from a specific stage only (2nd example).
+
+    <h3>Conditional execution</h3>
+    We can define whether a process or stage runs in a case or is skipped. Field + comparator + value. By default, a stage 
+    or a process always starts. In the configuration pane, a condition must be entered to skip. It have several conditions.
+
+    <p class="ex">Ex Automobile accident case : was a party injured ? if yes, the File personal injury claim is ran, 
+        if no, that process is skipped.
+    </p>
+
+    <h3>Case status</h3>
+    Indicates the progress of a case towards resolution (for stages or steps). Prefixes : New, Open, Pending, Resolved. 
+    Suffixes : Pending-Approval, Pending-Fulfillment.
+    Closed cases should use Resolved (-Completed, -Withdrawn, -Cancelled).
+    <p class="ex">Ex : stages of an online shopping application. New order = New, Processing = Pending-Processing, 
+        Fulfillment = Pending-Fulfillment, Shipping = Resolved-Completed. <br>
+        In the Shipping stage, there are two steps : status = Pending-Shipping and status = Pending-Arrival
+    </p>
+
+    <h3>Duplicate cases </h3>
+    To check if a case is duplicated, Pega provides a search system : Search duplicate cases step. The system uses basic 
+    and weighted conditions to compare specific property values with existing cases. The basic condition is the reference, 
+    the weighted conditions are the conditions that will differentiate the case from others and are assigned a weight.
+    If there is a duplicate, the user can resolve the case with the Resolved-Duplicate status.
+
+    <p class="ex">Health care services application : the patient date of birth is the basic condition, the surgeon name, 
+        surgical type, procedure and date are weighted conditions with a value of 25 each and a threshold of 50. The system 
+        finds a duplicate beacause everything matches so the total weighted condition value is 100, exceeding the threshold 50.
+        It can be resolved as Resolved-Duplicate or Ignore & Continue.
+    </p>
+
+    <b>User guidance :</b> add instructions in assignments to be sure the user knows what to enter. Most useful in 
+    Collect information steps.
+
+    <h2>Child cases</h2>
+
+    A case can require other cases. Adding a child case can be considered when additional information is needed to complete the 
+    parent case and that information can be obtained through a separate process. Case relationships can be modeled with a 
+    hierarchy of top-level cases (cases that do not have a parent case but can become a parent for other cases) and child cases. 
+    The work can be done in parallel by different parties. The child cases must all be resolved before the parent case can be 
+    resolved. Child cases are beneficial when you want to model work that different parties perform, that follows different 
+    reporting options and time frames and that is common to multiple case types. <br>
+    Propagation : you can specify the information to copy from the parent case to the child case. Or Reference.<br>
+    In Pega, add a Create Case automation step to the case life cycle.
+
+    <p class="ex">Ex : the Accident Claim case needs to generate Vehicle Damage and Body Injury cases if necessary.</p>
+
+    <h2>Routing assignments to a user or a group of users :</h2>
+    
+    increases business efficiency by assigning work to the most appropriate parties. Can de done in the configuration pane.
+    
+    <ul>
+        <li><b>current user :</b> if the user who completed the preceding assignment needs to complete the current task</li>
+        <li><b>worklist (specific user) :</b> the assignment must be completed by a specific user. The worklist is a list of 
+            assignments, in order of importance, that must be completed by a specific user.</li>
+        <li><b>work queue :</b> list of tasks, in order of importance, that can be done by several users, to distribute work</li>
+        <li><b>business logic :</b> assign tasks based on certain conditions</li>
+    </ul>
+    
+    <h3>Approvance</h3>
+
+    Configure routing to define who is assigned to the approval and configure the flow to define how the case proceeds if it is 
+    approved or rejected. The email or mobile approval option can be enabled to send notifications to the assigned user. <br>
+    Approvals generally continue the case but it can be configured to change to a specific case and the status too for example. 
+    By default, rejected steps are set to Resolved-Rejected.
+
+</body>
+</html>

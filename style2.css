@@ -1,0 +1,20 @@
+body{
+    background-color: rgb(255, 117, 117);
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.ex{
+    color: darkgreen;
+}
+
+a{
+    background-color:brown;
+    color: white;
+    text-decoration: none;
+    padding: 7px;
+}
+
+.title{
+    display: flex;
+    justify-content: center;
+}

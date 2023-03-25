@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Low-code App Builder Extended</title>
+</head>
+<body>
+    <a href="SA.html">System Architect 8.8</a>
+
+    <h2>Agile methodology</h2>
+    Agile development supports a customer's need to update their production environment as business needs change. Enables 
+    frequent and small changes.
+    <ul>
+        <li><b>Real-time updates:</b> frequent development iterations that are small in scope</li>
+        <li><b>Testing:</b> continuous application validation to identify and address issues early</li>
+        <li><b>Branches:</b> concurrent team development environment to maximize productivity</li>
+    </ul>
+     
+ 
+    <h2>Agile workbench</h2>
+    Software tool to track feature development and capture real-time project feedback. Supports Directly Capture Objectives
+    (DCO) and agile development. 
+
+    In the Application profile, we can add new features.
+    The Developer Assistant pane helps to organize work by using AI-powered developer aids. We can access all the 
+    tasks to be completed before the application goes into production. Four tabs : 
+    <ul>
+        <li><b>Guidance</b> contains suggestions to improve the app. Guidelines and best practices for the successful 
+        design and implementation of your application.</li>
+        <li><b>Knowledge</b> contains content that is relevant to the most recent action</li>
+        <li><b>Work</b> to access Agile Workbench with feedback and development status of the app's features</li>
+        <li><b>Checklists</b> access application guides such as Security checklist</li>
+    </ul>
+    
+    <u>features</u> : capabilities that you want your application to support. <br>
+    <u>subfeatures</u> : features within a feature. both can be linked to user stories. <br>
+    Work items = backlog of development work. Every work item has a status (<b>To do</b>, <b>Doing</b>, <b>Done</b>)
+    <ul>
+        <li><b>User stories : </b>business requirements</li>
+        <li><b>Bugs</b> to document feature defects</li>
+        <li><b>Feedback</b> to record enhancement requests. Used to guide development on current or future releases</li>
+    </ul>
+    Agile workbench provides continuous access to work item status and new work item creation.
+    Interfaces with Agile Studio that expands the Agile Workbench functionality with more robust features for release 
+    management, progress tracking, team capacity and analytics. Also with Jira or CA Agile Central.
+
+
+    <h4>DevOps</h4>
+    Set of practices that bridge application development and operational behavior to reduce time to market without compromising 
+    on quality and operational effectiveness. Allows app dev and business owners to respond to customer needs quickly, develop a 
+    quicker feedback cycle and achieve business value faster. Three components :
+    <ul>
+        <li><b>People :</b> encourages collaboration between development, quality and operation teams to reduce barriers through 
+        continuous integration, continuous delivery and continuous deployment.</li>
+        <li><b>Process :</b> encourages an automated process to quickly move apps from development through testing to 
+        deployment.</li>
+        <li><b>Technology :</b> encourages model-driven and open solutions to build a deployment pipeline.</li>
+    </ul>
+    <b>Two key stages of software delivery :</b> <br>
+    <b>Continuous integration : </b> app dev frequently check in changes to the source environment and use an automated build 
+    process to verify these changes automatically. Continuously validate and merge code. Add "ready to share" and "integrate changes" 
+    steps in the pipeline to ensure that all necessary critical tests are run before integrating and publishing changes to a development 
+    repository. 
+    <b>==> Test early and often, Automate, Update rules, Maintain version history</b>
+    <br>
+    <b>Continuous delivery : </b> application changes run through rigorous automated regression testing. The changes are 
+    deployed to a staging environment for further testing to ensure that the app is ready to deploy on the production system.
+    In a 'ready to accept' step, testing runs to ensure that the acceptance criteria are met. A 'ready to deploy' step verifies all 
+    the necessary performance, scale, and compatibility tests that are necessary to ensure that the application is ready for deployment.
+    The deploy step validates in a preproduction environment, deploys to production, and runs post-deployment tests.
+    <b>==> Create test environments, Conduct regression tests, Use version control, Employ a rollback strategy, Document</b>
+    <br>
+    DevOps involves both business and technical team members in continuous integration and delivery. <br>
+    <b>The Deployment Manager</b> : pipeline manager, used to move your app from environment to environment. (App + Admin studio)
+
+    <h3>Pega Express Delivery</h3>
+    Agile methodology tailored to application development using Pega Platform. Four phases :
+    <ul>
+        <li><b>Discover :</b> Define your business outcomes and create a Day 1 Go-Live plan</li>
+        <li><b>Prepare :</b> Host a design sprint with end users to build a working prototype</li>
+        <li><b>Build :</b> Build your application based on user stories in the backlog</li>
+        <li><b>Adopt :</b> Once your application goes live, conduct a release retrospective</li>
+    </ul>
+
+    <h2>Roles in PEGA project</h2>
+    <a href="roles.html">Roles in Pega</a>
+
+
+    <h2>Decision points and automation shapes</h2>
+
+    Automated decisions based on business logic allows application users to focus on decisions that require human expertise. <br>
+    We can model complex case life cycles that require branching or skipping a step.
+    <br>
+    <b>Flow :</b> sequence of events that models a business process, to support the different paths that users can take through 
+    a case life cycle. Graphical shapes depending on the type of decision and connectors. Easier to visualize. <br>
+    Decision shapes can be used to add a conditional path to a flow or model more complex use cases. An automated decision evaluates 
+    business logic or a set of one or more conditions.
+    <p class="ex">Assignment -- > Decision shape : is this condition satisified ? -- > if yes : Subprocess -- > if no : Assignment 
+        -- > end shape</p>
+
+    <p> Pega provides automations to perform specific actions automatically, for example to send an email. Saves development time and 
+    enables you to design business processes more efficiently. <br>
+    In Pega : Step - More - Automations -> Attach content, Change to a stage, Create case, Create PDF, Send email... </p>
+    <b>Run data transform</b> automation helps to run the selected data transform rule at run time.
+    <p class="ex">ex : If the shipping address is the same as the billing address, it is efficient to use a data transform to 
+        copy info.</p>
+
+
+    <h2>Case workflow dependency (pausing and resuming case processing)</h2>
+
+    Use of the Wait step to enforce dependencies (to pause and resume case processing). Two wait types :
+    <ul>
+        <li><b>Case Dependency :</b> pauses case processing of a parent case until the child case dependency resolves.
+        Add a Wait step to the parent case : the cases pauses until all child cases reach a defined status or resolve.</li>
+        <li><b>Timer :</b> pauses a case until the <b>Set date/time interval</b> expires or until a <b>Reference date/time</b> 
+            is reached.</li>
+    </ul>
+
+
+    <h2>Data validation</h2>
+
+    Data requirements : data must be the right type, must be restricted to possible values, must fit the business logic...
+    <p class="ex">Ex : use a calendar to ensure that the data entered by users is a date. But to ensure that the date is in the past, 
+        we use business logic.
+    </p>
+    Creation of conditions that define invalid data values so that an error message is displayed for the user when the condition is met
+    (error message guideline + validation condition configuration). The system prevents the user from continuing the case until they 
+    submit valid data (on a form for instance). To display messages -- > Configure view in the property pane -- > Validations <br>
+    Validation on a stage : manage all stage entry validations for a specific case type in one convenient place.
+
+
+    <h2>Explore Data</h2>
+
+    <b>Explore Data</b> <u>landing page (cf portal content)</u> : explore and analyze your application data quickly (query : sort, filter, group results). 
+    Queries can be saved as <u><b>insights</b></u> = rules that Pefa uses to transform data queries into tables or visualizations 
+    that you can share between users (list or interactive chart). You select the type of data (Case Type, Data Object...).
+    Custom data query can be displayed in a table-based insight or can be visualized in a chart-based insight or simple value chart.
+
+    <p class="ex">Nombre de commandes contenant tel article, list of assignments that are routed to members of your team, claims 
+        that are pending approval...
+    </p>
+
+    <b>Report Browser</b> tool to create new reports, organize, run, share reports, manage report categories. A <u>category</u> 
+    defines an organization framework for reports displayed in the Report Browser = label + owner type(private or public).
+    <br>
+    <b>Business metrics</b> measure the success or failure of business processes, based on data you define for an application.
+     -- > to make informed decisions about improving business performance.
+    <br>
+    <b>Process metrics</b> measure how work is performed, based on data automatically collected by Pega Platform.
+     -- > enables business analysts and business managers to discover issue that impact process efficiency.
+
+
+    <h2>UI elements</h2>
+
+    User interface elements (text inputs, layouts) present information and actionable items on the user interface. In Pega :
+    Autocomplete controls, buttons, charts, check boxes, drop-down lists, links, sliders, text area/rich-text editors (inputs).
+    Out-of-the-box UI elements come with predefined style formats : saves development time, reduces maintenance work, 
+    improves consistency of the application's look and feel. Can style typography, borders, backgrounds, layouts, placement, 
+    alignment. For example, the predefined formats for a button include Standard, Simple and Strong. <br>
+    Avoid using drop-down control for long lists : autocomplete control. <br>
+    Links : to redirect users to a webpage. Buttons : invoke an action when clicked or display a cascading menu.
+
+    <h3>Dynamic functionality on UI elements</h3>
+
+    Designing elements on a UI to adapt according to user input. We configure when UI elements are visible, disabled, required.
+    == > real-time repsonse to end-user behavior, robust functionality available for most user interactions, reduced visual clutter 
+    on the screen, fewer full-page refreshes, which improves UI Responsiveness.
+    <p class="ex">Ex : in a loan request, customers specify their marital status by selecting "single" or "married". If "married" is 
+        selected, the app displays user entry fields for their spouse. </p>
+
+    <h3>Event and action sets</h3>
+
+    <b>Event :</b> a trigger caused by user activity (button click, field entry...). <b>Action :</b> a response by the application 
+    (creating a case, displaying information about a field to guide user input).
+    <p class="ex">ex : If the shipping address is the same as the billing address, the user can select a check box for the application 
+        to copy the shipping address information to the billing address fields and disbale any editing of the billing address. </p>
+
+    <b>Examples of event-action pairs :</b>
+    <ul>
+        <li>Click a control (button, link, icon) : open a new window</li>
+        <li>Double-click a row in the grid : allow editing of the contents of the row</li>
+        <li>press the Enter key on the keyboard : display a menu</li>
+        <li>Select a value from a list of states or provinces : update the list of office locations</li>
+        <li>Enter a value in the Quantity field : verify that inventory is sufficient to fulfill the order</li>
+    </ul>
+    <b>Action set :</b> one or more events and one or more actions. To configure an actionable control. Can add conditions.
+    One or more events can trigger an action and an event can trigger more than one set of actions.
+    <br>
+    Refresh when property values are updated on the server and the UI needs to reflect the new values, when an action that causes a change
+    must be submitted.
+    Refresh When action for read-only references that need to remain synchronized with data on the server.
+    <p class="ex">Ex : End users can clear selections on a form and view the previous actions on the case. 
+        To configure the action set on a button to achieve this result : 
+        First, configure a Click event with a Refresh action. Next, add a View History action to the event. </p>
+
+
+    <h2>Decision tables</h2>
+
+    A decision table consists of a table of conditions and results. You define set of conditions (property values that must 
+    fall within a certain range) and the results to return when the conditions are true. Each set of conditions contains a 
+    corresponding result. Do not forget the otherwise if none of the conditions are true to always return a result.
+    <br>
+    Yes/no question when using an automated decision process -- > a When rule serves the purpose. <br>
+    Test the values of multiple properties to answer questions - > Decision table (can return results other than true or false).
+    <p class="ex">Does this purchase order require additional approval ? yes or no. <br>
+    What promotional offer should the company offer ? decision table : if customer history >=5, 20OFFON50. 
+    if customer history >5, 15OFFON100</p>
+
+    A condition uses an equal or greater than or less than comparison operators. When the system evaluates a decision table, it 
+    starts with the top row and evaluates each condition in the row. If all of the conditions are true, the system returns the 
+    result for that row and stop processing.
+    <p class="ex">a YPlus cargo courier company charges a USD500 delivery charge for courier services. YPlus has decided 
+        to update the delivery charge calculation based on distance. Suppose the delivery address is within 100 miles. In that 
+        case, the delivery charge is USD50. If the address is within 500 miles, the delivery charge is USD100. If the address is 
+        within 1000 miles, the delivery charge is USD250, and if the delivery address is farther than 1000 miles, the delivery 
+        charge is USD500. <br>
+    Conditions : Distance <= <br>
+    100 -- > return 50 <br>
+    500 -- > return 100 <br>
+    1000 -- > return 250
+    Otherwise -- > 500 <br>
+    No need to do : if distance < 500 AND distance > 100 because the conditions are checked row by row.
+</p>
+
+
+<h2>Portal content</h2>
+A <b>Portal</b> is the user interface of an application. It consists of <b>landing pages</b> that consolidate case-related information 
+within the application (list of landing pages in the main menu). A portal is a web channel in use by your app, accessed through a browser. 
+Used to design custom web interfaces for personas that provide them with the info and functionalities they need. 
+By default in Pega : User Portal, with a standard UI for working on cases.
+
+<h3>Landing pages</h3>
+
+<p><b>Landing pages</b> are used to display specific information in menus of the application. Present fields, controls and resources 
+to users as images and texts. (create, configure, add). Landing pages added to a portal menu are also added to the portal.
+Customize the main menu and improve navigation and UX. <br>
+<b>Custom pages =</b> out-of-the-box landing pages. For example, Teams is a custom page that displays the teams the user belongs to.</p>
+Manage access to landing pages by specifying visibility by role. Disable an existing landing page no longer needed so it can't be added 
+to a menu. Add landing page to organize the content of the channel in a main menu.
+
+<h3>Dashboards</h3>
+A dashboard is a landing page that is accessed by a user in their portal. It consists of widgets (elements of the UI that display info 
+about the app and KPI) that consolidate summary info and key performance indicators (KPI). Contains the info necessary for a particular 
+role to help increase productivity. By default, dashboards are tailored to a role (user by default). It can be personalized and it won't 
+affect others' dashboards.<br>
+A template defines the layout of a dashboard and divides the workspace into slots (containers for one or more widgets).
+
+<h3>Channels</h3>
+
+Examples of a channel : messaging service, voice service, web portal or mobile portal. A channel interface allows us to adjust our 
+application to our specific business needs by creating tailored and interactive UI. Created from templates.  <br>
+Conversational channels : app users can interact with a Pega Platform app to obtain help by using Messenger, WhatsApp, Twitter, Apple 
+Business Chat, Twilio, Embedded chat window, Alexa, Email. <br>
+<b>Pega Intelligent Virtual Assistant, Pega Email Bot, Pega Marketplace</b>. <br>
+
+Types of channels we can create on Pega : Portal, Web mashup Mobile, Digital Messaging, Email, Alexa. <br>
+
+The Channels and interfaces landing page allows you to create, view, and edit all types of channel interfaces. You can add a 
+channel-specific process on the Create stage with the More icon. It must be added to the app before.
+<p class="ex">You can add a channel process so that when users enter a specific command in Messenger a case opens in your application.</p>
+
+<h3>Mobile app channels</h3>
+IOS + Android <br>
+
+A mobile channel provides developers a way to intuitively configure and customize various aspects of mobile app behavior. 
+Can use the existing mobile channel (Content, Configuration, Layout, Manage). Content tab to customize app navigation (mobile app pages),
+define swipe actions.
+The channel provides a real-time preview of the app design when interface being customized (colors, icons, buttons). <br>
+Security configuration : require login on mobile app, disable access on mobile app, lock app after x minutes...
+
+<h2>Collaboration tools</h2>
+From App studio and Dev studio :
+<ul>
+    <li><b>Pulse :</b> out-of-the-box messaging system for Pega, to post messages to specific individuals or a team. 
+        Access with the Toggle developer collaboration icon for app dev, by the nav bar for app users.</li>
+    <li><b>Spaces :</b> digital format for gathering users that have a single, common interest. To unify single digital community. 
+        Share documents, notif.</li>
+    <li><b>Documents :</b> to collaborate on and share artifacts. Users don't need to leave the app to access externally-stored content. 
+        To associate documents with a specific case, create the document in the Utility pane; with a specific space -- > in that space. 
+        The system can create case documents as part of the case life cycle -- > Generate documents automation step.</li>
+</ul>
+Users can receive notifications when someone references a user in a Pulse message or comments a post they commented... Can respond 
+directly from the email notification.
+
+
+    
+</body>
+</html>
