@@ -39,7 +39,7 @@
 
     A builder kit = shared library of UX patterns that speeds up design and development time. <u>Constellation design system </u> to 
     build app quickly and keeps the app easy to update for future releases. Provides presentation layer that includes the information 
-    architecture, intercations, accessibility, data visualizations... (other : Cosmos design system). 
+    architecture, interactions, accessibility, data visualizations... (other : Cosmos design system). 
     Context switching, multitasking, <u>modular design</u>, filtering, collaboration view, AI-powered collaboration tools, responsive templates...
     <p>Responsiveness : menu names and icons are displayed differently depending on the screen size. 
         ==> modular design (allow users to learn the meaning of discrete elements on the screen to be re used in multiple contexts).</p>
@@ -81,8 +81,7 @@
     Key business entity, contains all the fields necessary to describe the entity.
     A field is a named, reusable UI component. It is associated a field type. (Type User Reference for a picklist of user ID).
     <p class="ex">Ex : field : name, field type : text, value : Marina. name + Marina = data element</p>
-    Data objects be re-used for several case types. <br>
-    Associated to a <u>data page</u>.
+    Data objects can be re-used for several case types. Associated to a <u>data page</u>.
     
     <p><b>Data relationship</b> : a data object can contain other data objects. We can also use inheritance. </p>
     <p class="ex">Ex : the data object Candidate contains the data object Address (one-to-one) and the data object Employment history (one-to-many).
@@ -91,8 +90,8 @@
     </p>
 
 
-    <p> <b>single record :</b> single entity grouping related field (single set of values)</p>
-    <p><b>multiple records :</b> list of entities grouping related fields</p>
+    <p> <b>single record :</b> single entity grouping related field (single set of values).</p>
+    <p><b>multiple records :</b> list of entities grouping related fields.</p>
 
     <h3>Data pages : </h3>
     identify how to connect to the system of record and what fields to map in the data object. Provide links
@@ -104,12 +103,12 @@
     Each record has an identifier pyGUID.
 
     <h3>Data storage : </h3>
-    <h4>Work class : </h4> contains rules that describe how to process cases (processes, data elements, UI)
+    <h4>Work class : </h4> contains rules that describe how to process cases (processes, data elements, UI).
 
     <h4>Data class : </h4> contains rules that describe the data types in the application (customer data type, order items data type).
-    Data that exists outside of data objects (to be easy to share, portable)
+    Data that exists outside of data objects (to be easy to share, portable).
 
-    <p>Use of the <b>Configure a view</b> screen to add new fields as needed </p>
+    <p>Use of the <b>Configure a view</b> screen to add new fields as needed. </p>
 
     <h4>Data type sourcing : </h4>
     <ul>
@@ -122,7 +121,7 @@
     <ul>
         <li><b>Case reference :</b> single or multiple records from a selected Case type by id</li>
         <li><b>Data reference :</b> single or multiple records from a selected data page by id (both used to show a user a list of options)</li>
-        <li><b>Embedded data :</b> users-supplied data sourced from inside a case type (information provided by the user durign the case)</li>
+        <li><b>Embedded data :</b> users-supplied data sourced from inside a case type (information provided by the user during the case)</li>
         <li><b>Query :</b> a data page or view that is not sourced from inside a case type</li>
     </ul>
 
@@ -134,11 +133,11 @@
     
     <h2>Calculation</h2>
     Calculation expresses a relationship between fields by setting the value of a calculated field based on one or more input fields. 
-    For instance an online shopping cart app provides a total coest for each item ordered based on unit price and quantity ordered.
+    For instance an online shopping cart app provides a total cost for each item ordered based on unit price and quantity ordered.
     Calculation occurs when users update the value of an input field. We can create networks of dependent calculations. <br>
     It reduces mistakes by avoiding manual computations.
     <ul>
-        <li><b>Functions </b>ierate over items in a list (sum of, average of, maximum of, minimum of)</li>
+        <li><b>Functions </b>iterate over items in a list (sum of, average of, maximum of, minimum of)</li>
         <li><b>Expressions </b>calculate a field value by referencing any combination of simple and fancy fields and data relationship values (+,-,*,/,(),AND,OR)
         (ex : total cost for 2 products : price*quantity+price*quantity)</li>
         <li><b>Decision tables </b> use a set of conditions to test property values and return an appropriate response</li>
@@ -152,14 +151,14 @@
     Step "Send email". When the case reaches this step, the email is automatically sent to the selected parties.
     In configuration pane : Send to "field" "customer email" to get the email that the Customer entered in case of updates. <br>
     Send correspondence to a group of stakeholders. 
-    Participants : Owner (the person who created the case), Customer (the perdson on whose behalf the case is transacted), 
+    Participants : Owner (the person who created the case), Customer (the person on whose behalf the case is transacted), 
     Interested (a person who tracks the progress of a case without processing it). <br>
     "+ compose" to write the email that will be received. Referencing fields with "<<.field_name>>". <br>
     Case-level notifications : send notifications to the user associated with the worklist. "Settings" "Notifications" checkbox
     "Email user when the assignment is routed to worklist".
 
 
-    <h2>To go further</h2>
+    <h2>Low-Code App Builder Extended</h2>
     <a href="extended.html">Low-Code App Builder Extended</a>
 
 </body>

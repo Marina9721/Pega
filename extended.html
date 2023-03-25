@@ -8,6 +8,7 @@
     <title>Low-code App Builder Extended</title>
 </head>
 <body>
+    <h1 class="title">Low-Code App Builder Extended</h1>
     <a href="SA.html">System Architect 8.8</a>
 
     <h2>Agile methodology</h2>
@@ -105,8 +106,6 @@
     enables you to design business processes more efficiently. <br>
     In Pega : Step - More - Automations -> Attach content, Change to a stage, Create case, Create PDF, Send email... </p>
     <b>Run data transform</b> automation helps to run the selected data transform rule at run time.
-    <p class="ex">ex : If the shipping address is the same as the billing address, it is efficient to use a data transform to 
-        copy info.</p>
 
 
     <h2>Case workflow dependency (pausing and resuming case processing)</h2>
@@ -134,8 +133,9 @@
 
     <h2>Explore Data</h2>
 
-    <b>Explore Data</b> <u>landing page (cf portal content)</u> : explore and analyze your application data quickly (query : sort, filter, group results). 
-    Queries can be saved as <u><b>insights</b></u> = rules that Pefa uses to transform data queries into tables or visualizations 
+    <b>Explore Data</b> <u>landing page (cf portal content)</u> : explore and analyze your application data quickly (query : sort, filter, 
+    group results). 
+    Queries can be saved as <u><b>insights</b></u> = rules that Pega uses to transform data queries into tables or visualizations 
     that you can share between users (list or interactive chart). You select the type of data (Case Type, Data Object...).
     Custom data query can be displayed in a table-based insight or can be visualized in a chart-based insight or simple value chart.
 
@@ -143,8 +143,8 @@
         that are pending approval...
     </p>
 
-    <b>Report Browser</b> tool to create new reports, organize, run, share reports, manage report categories. A <u>category</u> 
-    defines an organization framework for reports displayed in the Report Browser = label + owner type(private or public).
+    <b>Report Browser</b> tool to create new reports, organize, run, share reports, manage report categories. A <u>category</u> defines 
+    an organization framework for reports displayed in the Report Browser = label + owner type (private or public).
     <br>
     <b>Business metrics</b> measure the success or failure of business processes, based on data you define for an application.
      -- > to make informed decisions about improving business performance.
@@ -157,26 +157,26 @@
 
     User interface elements (text inputs, layouts) present information and actionable items on the user interface. In Pega :
     Autocomplete controls, buttons, charts, check boxes, drop-down lists, links, sliders, text area/rich-text editors (inputs).
-    Out-of-the-box UI elements come with predefined style formats : saves development time, reduces maintenance work, 
-    improves consistency of the application's look and feel. Can style typography, borders, backgrounds, layouts, placement, 
-    alignment. For example, the predefined formats for a button include Standard, Simple and Strong. <br>
+    Out-of-the-box UI elements come with predefined style formats : saves development time, reduces maintenance work, improves 
+    consistency of the application's look and feel. Can style typography, borders, backgrounds, layouts, placement, alignment. 
+    For example, the predefined formats for a button include Standard, Simple and Strong. <br>
     Avoid using drop-down control for long lists : autocomplete control. <br>
-    Links : to redirect users to a webpage. Buttons : invoke an action when clicked or display a cascading menu.
+    Links : to redirect users to a webpage. Buttons : to invoke an action when clicked or to display a cascading menu.
 
     <h3>Dynamic functionality on UI elements</h3>
 
     Designing elements on a UI to adapt according to user input. We configure when UI elements are visible, disabled, required.
-    == > real-time repsonse to end-user behavior, robust functionality available for most user interactions, reduced visual clutter 
-    on the screen, fewer full-page refreshes, which improves UI Responsiveness.
+    == > real-time response to end-user behavior, robust functionality available for most user interactions, reduced visual clutter 
+    on the screen, fewer full-page refreshes, which improves UI responsiveness.
     <p class="ex">Ex : in a loan request, customers specify their marital status by selecting "single" or "married". If "married" is 
-        selected, the app displays user entry fields for their spouse. </p>
+    selected, the app displays user entry fields for their spouse. </p>
 
     <h3>Event and action sets</h3>
 
     <b>Event :</b> a trigger caused by user activity (button click, field entry...). <b>Action :</b> a response by the application 
     (creating a case, displaying information about a field to guide user input).
     <p class="ex">ex : If the shipping address is the same as the billing address, the user can select a check box for the application 
-        to copy the shipping address information to the billing address fields and disbale any editing of the billing address. </p>
+        to copy the shipping address information to the billing address fields and disable any editing of the billing address. </p>
 
     <b>Examples of event-action pairs :</b>
     <ul>
@@ -199,9 +199,9 @@
 
     <h2>Decision tables</h2>
 
-    A decision table consists of a table of conditions and results. You define set of conditions (property values that must 
-    fall within a certain range) and the results to return when the conditions are true. Each set of conditions contains a 
-    corresponding result. Do not forget the otherwise if none of the conditions are true to always return a result.
+    A decision table consists of a table of conditions and results. You define set of conditions (property values that must fall within a 
+    certain range) and the results to return when the conditions are true. Each set of conditions contains a corresponding result. 
+    Do not forget the otherwise if none of the conditions are true to always return a result.
     <br>
     Yes/no question when using an automated decision process -- > a When rule serves the purpose. <br>
     Test the values of multiple properties to answer questions - > Decision table (can return results other than true or false).
@@ -209,14 +209,13 @@
     What promotional offer should the company offer ? decision table : if customer history >=5, 20OFFON50. 
     if customer history >5, 15OFFON100</p>
 
-    A condition uses an equal or greater than or less than comparison operators. When the system evaluates a decision table, it 
-    starts with the top row and evaluates each condition in the row. If all of the conditions are true, the system returns the 
-    result for that row and stop processing.
-    <p class="ex">a YPlus cargo courier company charges a USD500 delivery charge for courier services. YPlus has decided 
-        to update the delivery charge calculation based on distance. Suppose the delivery address is within 100 miles. In that 
-        case, the delivery charge is USD50. If the address is within 500 miles, the delivery charge is USD100. If the address is 
-        within 1000 miles, the delivery charge is USD250, and if the delivery address is farther than 1000 miles, the delivery 
-        charge is USD500. <br>
+    A condition uses an equal or greater than or less than comparison operators. When the system evaluates a decision table, it starts 
+    with the top row and evaluates each condition in the row. If all of the conditions of a row are true, the system returns the result 
+    for that row and stop processing.
+    <p class="ex">a YPlus cargo courier company charges a USD500 delivery charge for courier services. YPlus has decided to update the 
+    delivery charge calculation based on distance. Suppose the delivery address is within 100 miles. In that case, the delivery charge 
+    is USD50. If the address is within 500 miles, the delivery charge is USD100. If the address is within 1000 miles, the delivery charge 
+    is USD250, and if the delivery address is farther than 1000 miles, the delivery charge is USD500. <br>
     Conditions : Distance <= <br>
     100 -- > return 50 <br>
     500 -- > return 100 <br>
@@ -260,7 +259,8 @@ Types of channels we can create on Pega : Portal, Web mashup Mobile, Digital Mes
 
 The Channels and interfaces landing page allows you to create, view, and edit all types of channel interfaces. You can add a 
 channel-specific process on the Create stage with the More icon. It must be added to the app before.
-<p class="ex">You can add a channel process so that when users enter a specific command in Messenger a case opens in your application.</p>
+<p class="ex">
+    Ex : You can add a channel process so that when users enter a specific command in Messenger a case opens in your application.</p>
 
 <h3>Mobile app channels</h3>
 IOS + Android <br>

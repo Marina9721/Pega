@@ -8,7 +8,7 @@
     <title>Journey</title>
 </head>
 <body>
-    <h1>Journey configurations</h1>
+    <h1 class="title">Journey configurations</h1>
 
     A journey is a customer interaction. It is split into smaller pieces called microjourneys.
 
@@ -48,12 +48,12 @@
     The resolution stage (red bar) is the last stage, it defines the case behavior at the end of the case life cycle. <br>
     We can create parallel processes that can be done in parallel with no priority. <br>
 
-    Alternate stages are stages that handle deviations from the primary path in case of a approve/reject step. 
+    Alternate stages are stages that handle deviations from the primary path in case of an approve/reject step. 
     They represent a negative resolution stage or exceptions to the normal course of events or are used for exception handling 
     to reenter the primary path when the exception is handled. They can be sequenced into primary stages. <br>
     Automation steps are performed by the system (ex : change stage to re enter the primary path) but this stage must be added, 
     alternate stages cannot be configured to change step automatically.
-    <br>
+    <br> <br>
     You can configure the stage transition in the property panel :
     <ul>
         <li>Automatically move to the next stage when all steps are complete</li>
@@ -68,10 +68,10 @@
     It can be a process divided in multiple steps or a user action if it one step only.
     It can be an optional Change Stage action that may be called at any time during case processing.
 
-    <p class="ex">Ex : while reporting a car accident to an insurance company, the customer mentions having a new phone
+    <p class="ex">Ex 1 : while reporting a car accident to an insurance company, the customer mentions having a new phone
          number. The agent launches the Update Customer optional user action on a single screen. It returns to the primary 
-         path then. In case of an order cancellation, the Cancel Order optional process is launched and the case is Resolved.
-         Ex 3 : a user transfer the case to another employee at any stage of the case.
+         path then. Ex 2 : In case of an order cancellation, the Cancel Order optional process is launched and the case is 
+         Resolved. Ex 3 : a user transfer the case to another employee at any stage of the case.
     </p>
 
     In the case designer, "Optional actions". Two possibilities : <u>case wide actions</u>, the optional action can be 
@@ -82,7 +82,7 @@
     We can define whether a process or stage runs in a case or is skipped. Field + comparator + value. By default, a stage 
     or a process always starts. In the configuration pane, a condition must be entered to skip. It have several conditions.
 
-    <p class="ex">Ex Automobile accident case : was a party injured ? if yes, the File personal injury claim is ran, 
+    <p class="ex">Ex : Automobile accident case : was a party injured ? if yes, the File personal injury claim is ran, 
         if no, that process is skipped.
     </p>
 
@@ -110,7 +110,7 @@
     <b>User guidance :</b> add instructions in assignments to be sure the user knows what to enter. Most useful in 
     Collect information steps.
 
-    <h2>Child cases</h2>
+    <h2>Child cases (extended)</h2>
 
     A case can require other cases. Adding a child case can be considered when additional information is needed to complete the 
     parent case and that information can be obtained through a separate process. Case relationships can be modeled with a 
@@ -118,21 +118,24 @@
     The work can be done in parallel by different parties. The child cases must all be resolved before the parent case can be 
     resolved. Child cases are beneficial when you want to model work that different parties perform, that follows different 
     reporting options and time frames and that is common to multiple case types. <br>
-    Propagation : you can specify the information to copy from the parent case to the child case. Or Reference.<br>
+    Data propagation : you can specify the information to copy from the parent case to the child case (if data does not change).
+    Reference the data in the parent case if the data might change in the parent case to keep the info synchronized (from child 
+    case to parent case).<br>
     In Pega, add a Create Case automation step to the case life cycle.
 
     <p class="ex">Ex : the Accident Claim case needs to generate Vehicle Damage and Body Injury cases if necessary.</p>
 
     <h2>Routing assignments to a user or a group of users :</h2>
     
-    increases business efficiency by assigning work to the most appropriate parties. Can de done in the configuration pane.
+    increases business efficiency by assigning work to the most appropriate parties. Can be done in the configuration pane.
     
     <ul>
-        <li><b>current user :</b> if the user who completed the preceding assignment needs to complete the current task</li>
+        <li><b>current user :</b> if the user who completed the preceding assignment needs to complete the current task.</li>
         <li><b>worklist (specific user) :</b> the assignment must be completed by a specific user. The worklist is a list of 
             assignments, in order of importance, that must be completed by a specific user.</li>
-        <li><b>work queue :</b> list of tasks, in order of importance, that can be done by several users, to distribute work</li>
-        <li><b>business logic :</b> assign tasks based on certain conditions</li>
+        <li><b>work queue :</b> list of tasks, in order of importance, that can be done by several users in a same <u>work 
+            group</u>, to distribute work.</li>
+        <li><b>business logic :</b> assign tasks based on certain conditions.</li>
     </ul>
     
     <h3>Approvance</h3>
